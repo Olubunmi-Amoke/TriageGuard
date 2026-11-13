@@ -1,0 +1,205 @@
+[
+  {
+    "id": "TG-DEMO-001",
+    "linked_icm_id": "ICM-DEMO-1001",
+    "linked_case_id": "CASE-DEMO-2001",
+    "reported_at": "2026-11-12T15:10:00Z",
+    "reporter_team": "Customer Operations",
+    "channel": "email",
+    "root_cause_category": "Recipient selection",
+    "raw_description": "A misdirected email from fictional employee Mara Fen reached the wrong customer at Cloudberry Loomworks. Affected customer: Cloudberry Loomworks; affected region: North America; approximately 12 records. Mechanism: a single autocomplete recipient selection error; data types: contact details. Containment: confirmed; deletion attested: yes."
+  },
+  {
+    "id": "TG-DEMO-009",
+    "linked_icm_id": "ICM-DEMO-1009",
+    "linked_case_id": "",
+    "reported_at": "2026-11-12T12:45:00Z",
+    "reporter_team": "Customer Operations",
+    "channel": "form",
+    "root_cause_category": "Recipient selection",
+    "raw_description": "A misdirected email containing contact details went to an unintended customer during a fictional renewal exercise. Affected customer: Pebblekite Kitchens; affected region: Europe; approximately 24 records. Mechanism: a single wrong contact chosen from a saved address list. Containment: confirmed; deletion attested: no."
+  },
+  {
+    "id": "TG-DEMO-019",
+    "linked_icm_id": "",
+    "linked_case_id": "CASE-DEMO-2019",
+    "reported_at": "2026-11-12T03:00:00Z",
+    "reporter_team": "Customer Operations",
+    "channel": "email",
+    "root_cause_category": "Recipient selection",
+    "raw_description": "A misdirected file was attached to a fictional customer's service email. Affected customer: Willowcoil Maps; the reporter has not established the contents or the affected region. Mechanism: an attachment was selected from a neighboring account folder. The recipient has not replied and containment evidence is still being collected."
+  },
+  {
+    "id": "TG-DEMO-004",
+    "linked_icm_id": "ICM-DEMO-1004",
+    "linked_case_id": "CASE-DEMO-2004",
+    "reported_at": "2026-11-11T09:00:00Z",
+    "reporter_team": "Billing Support",
+    "channel": "escalation",
+    "root_cause_category": "Attachment selection",
+    "raw_description": "A misdirected file reached the wrong fictional customer during invoice reconciliation. Affected customer: Lanternmoss Ceramics; affected region: Europe; approximately 180 records. Mechanism: an invoice workbook was attached to the wrong ticket; data types: bank account numbers. Containment: confirmed; deletion attested: no."
+  },
+  {
+    "id": "TG-DEMO-005",
+    "linked_icm_id": "ICM-DEMO-1005",
+    "linked_case_id": "",
+    "reported_at": "2026-11-10T14:00:00Z",
+    "reporter_team": "Customer Operations",
+    "channel": "form",
+    "root_cause_category": "Recipient selection",
+    "raw_description": "A misdirected email delivered a fictional onboarding contact list to a different customer. Affected customer: Amberfin Studios; affected region: Asia Pacific; approximately 8 records. Mechanism: a single autocomplete recipient selection error; data types: email addresses. Containment: confirmed; deletion attested: yes."
+  },
+  {
+    "id": "TG-DEMO-006",
+    "linked_icm_id": "",
+    "linked_case_id": "",
+    "reported_at": "2026-11-08T11:00:00Z",
+    "reporter_team": "Billing Support",
+    "channel": "email",
+    "root_cause_category": "Attachment selection",
+    "raw_description": "A misdirected file sent a fictional service contact list to an unrelated customer. Affected customer: Copperfern Transit; approximately 45 records. Mechanism: a single file was attached from the wrong account directory; data types: contact details. Containment: confirmed; deletion attested: yes.",
+    "known_fields": {
+      "regions": ["North America"]
+    }
+  },
+  {
+    "id": "TG-DEMO-007",
+    "linked_icm_id": "ICM-DEMO-1007",
+    "linked_case_id": "CASE-DEMO-2007",
+    "reported_at": "2026-11-12T15:45:00Z",
+    "reporter_team": "Platform Operations",
+    "channel": "form",
+    "root_cause_category": "Sharing configuration",
+    "raw_description": "An access review found a misconfigured storage link in a fictional workspace. Affected customer: Snowquill Components; affected region: Europe; approximately 2400 records. Mechanism: a storage folder inherited an unrestricted sharing permission; data types: contact details. Containment: ongoing exposure; engineering is collecting the access log."
+  },
+  {
+    "id": "TG-DEMO-008",
+    "linked_icm_id": "ICM-DEMO-1008",
+    "linked_case_id": "",
+    "reported_at": "2026-11-09T08:30:00Z",
+    "reporter_team": "Platform Operations",
+    "channel": "escalation",
+    "root_cause_category": "Sharing configuration",
+    "raw_description": "A sharing link in a fictional customer portal was accessible outside the intended group. Affected customer: Brambleglass Healthworks; the number of records and affected regions are not yet established. Mechanism: a folder link was changed from group-only to open access; data types: health records. Containment: confirmed."
+  },
+  {
+    "id": "TG-DEMO-002",
+    "linked_icm_id": "ICM-DEMO-1002",
+    "linked_case_id": "CASE-DEMO-2002",
+    "reported_at": "2026-11-11T13:00:00Z",
+    "reporter_team": "Trust Operations",
+    "channel": "escalation",
+    "root_cause_category": "Access governance",
+    "raw_description": "A synthetic audit alert raised suspected insider misuse in a fictional support workspace. Affected customer: Thistledial Instruments; data types: contact details. Mechanism: an employee account exported a customer list outside its assigned support scope. The reporter has not yet established affected regions, record count, containment status, or recipient deletion."
+  },
+  {
+    "id": "TG-DEMO-010",
+    "linked_icm_id": "",
+    "linked_case_id": "CASE-DEMO-2010",
+    "reported_at": "2026-11-12T12:30:00Z",
+    "reporter_team": "Trust Operations",
+    "channel": "escalation",
+    "root_cause_category": "Access governance",
+    "raw_description": "A fictional supervisor reported suspected insider misuse after an unusual export. Affected customer: Dewspire Fabrication; affected region: Europe; approximately 75 records. Mechanism: a staff account exported a billing contact list; data types: contact details. Containment: confirmed; deletion attested: yes."
+  },
+  {
+    "id": "TG-DEMO-011",
+    "linked_icm_id": "ICM-DEMO-1011",
+    "linked_case_id": "CASE-DEMO-2011",
+    "reported_at": "2026-11-10T07:00:00Z",
+    "reporter_team": "Platform Operations",
+    "channel": "escalation",
+    "root_cause_category": "Account security",
+    "raw_description": "The fictional security team reported an external attack and credential compromise against a demo service account. Affected customer: Juniperwake Logistics; affected region: Asia Pacific; approximately 3200 records. Mechanism: a stolen service token was used for an unauthorized export; data types: access tokens and contact details. Containment: confirmed; deletion attested: no."
+  },
+  {
+    "id": "TG-DEMO-012",
+    "linked_icm_id": "ICM-DEMO-1012",
+    "linked_case_id": "",
+    "reported_at": "2026-11-12T15:35:00Z",
+    "reporter_team": "Trust Operations",
+    "channel": "form",
+    "root_cause_category": "Account security",
+    "raw_description": "A fictional account owner reported credential compromise after a login alert. The affected customer, region, record count, and data types have not been established. Mechanism: an account session was opened with a reused secret. Containment: not confirmed."
+  },
+  {
+    "id": "TG-DEMO-013",
+    "linked_icm_id": "ICM-DEMO-1013",
+    "linked_case_id": "CASE-DEMO-2013",
+    "reported_at": "2026-11-09T15:00:00Z",
+    "reporter_team": "Partner Operations",
+    "channel": "email",
+    "root_cause_category": "Partner handling",
+    "raw_description": "A fictional processor reported vendor-handled data in an incorrectly shared support bundle. Affected customer: Starlingreed Packaging; affected region: Europe; approximately 90 records. Mechanism: a vendor workspace assigned the wrong reviewer to a bundle; data types: contact details. Containment: confirmed; deletion attested: yes."
+  },
+  {
+    "id": "TG-DEMO-014",
+    "linked_icm_id": "",
+    "linked_case_id": "",
+    "reported_at": "2026-11-10T16:30:00Z",
+    "reporter_team": "Partner Operations",
+    "channel": "escalation",
+    "root_cause_category": "Partner handling",
+    "raw_description": "A fictional supplier reported partner-handled data in a file delivered to another partner. Affected customer: Orchardrift Devices; the partner is still checking the contents and region. Mechanism: a partner batch export used the wrong delivery folder. Containment: not confirmed."
+  },
+  {
+    "id": "TG-DEMO-015",
+    "linked_icm_id": "ICM-DEMO-1015",
+    "linked_case_id": "CASE-DEMO-2015",
+    "reported_at": "2026-11-07T18:00:00Z",
+    "reporter_team": "Restricted Services",
+    "channel": "escalation",
+    "root_cause_category": "Recipient selection",
+    "raw_description": "A fictional government customer reported a misdirected email inside a restricted environment; notification assessment requested from the accountable owners. Affected customer: Mistvale Civic Observatory; affected region: North America; approximately 6 records. Mechanism: a single internal contact list entry selected the wrong recipient; data types: contact details. Containment: confirmed; deletion attested: yes."
+  },
+  {
+    "id": "TG-DEMO-016",
+    "linked_icm_id": "ICM-DEMO-1016",
+    "linked_case_id": "",
+    "reported_at": "2026-11-11T16:00:00Z",
+    "reporter_team": "Customer Operations",
+    "channel": "form",
+    "root_cause_category": "False positive",
+    "raw_description": "A fictional exercise generated an alert for synthetic test data only. Affected customer: Mooncairn Demo Lab; affected region: Europe; approximately 20 records. Mechanism: an intentionally shared training file triggered a demo detector; data types: synthetic test data. Containment: confirmed; deletion attested: yes."
+  },
+  {
+    "id": "TG-DEMO-017",
+    "linked_icm_id": "",
+    "linked_case_id": "CASE-DEMO-2017",
+    "reported_at": "2026-11-08T15:00:00Z",
+    "reporter_team": "Customer Operations",
+    "channel": "email",
+    "root_cause_category": "False positive",
+    "raw_description": "A fictional reviewer confirmed the shared brochure contained already-public information only. Affected customer: Driftpetal Design; affected region: North America; approximately 4 records. Mechanism: a public brochure was attached to an approved demo mailing; data types: already-public information. Containment: confirmed."
+  },
+  {
+    "id": "TG-DEMO-018",
+    "linked_icm_id": "ICM-DEMO-1018",
+    "linked_case_id": "",
+    "reported_at": "2026-11-10T10:00:00Z",
+    "reporter_team": "Platform Operations",
+    "channel": "form",
+    "root_cause_category": "False positive",
+    "raw_description": "A fictional monitoring exercise returned a false positive confirmed by its test owner. Affected customer: Fernorbit Sandbox; affected region: Asia Pacific; approximately 0 records. Mechanism: a detector replayed a synthetic test data fixture in an isolated workspace. Containment: confirmed; deletion attested: yes."
+  },
+  {
+    "id": "TG-DEMO-003",
+    "linked_icm_id": "ICM-DEMO-1003",
+    "linked_case_id": "CASE-DEMO-2003",
+    "reported_at": "2026-11-12T14:00:00Z",
+    "reporter_team": "Platform Operations",
+    "channel": "form",
+    "root_cause_category": "Engineering security process",
+    "raw_description": "A fictional test environment displayed a non-personal internal identifier in a diagnostics page; the reporter verified that it identifies a disposable build, not a person or customer. Environment: test; customer or personal data involved: no; security-process concern only: yes; approximately 0 records. Mechanism: a diagnostics page displayed a build identifier outside its intended test group; containment: confirmed. The engineering team still needs to review the diagnostics access-control process."
+  },
+  {
+    "id": "TG-DEMO-020",
+    "linked_icm_id": "ICM-DEMO-1020",
+    "linked_case_id": "",
+    "reported_at": "2026-11-12T12:40:00Z",
+    "reporter_team": "Developer Enablement",
+    "channel": "email",
+    "root_cause_category": "Engineering security process",
+    "raw_description": "A fictional development dashboard showed a non-personal internal identifier for a disposable build job; the reporter verified that it has no customer or person mapping. Environment: development; customer or personal data involved: no; security-process concern only: yes; approximately 0 records. Mechanism: a development dashboard displayed a build-job identifier outside its intended developer group; containment: not confirmed. Engineering follow-through remains open even if the privacy coordination record is later closed."
+  }
+]
