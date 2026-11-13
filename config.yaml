@@ -1,0 +1,263 @@
+demo_now: "2026-11-12T16:00:00Z"
+banner: "TriageGuard prototype – synthetic data only. Suggestions only; legal/privacy decisions remain with the accountable owners. Complements IcM and the case system of record."
+tagline: "Faster, consistent triage with humans in control. A prototype built on synthetic data."
+positioning: "The incident platform's AI covers engineering triage. TriageGuard prototypes the privacy triage layer, written as a response plan that existing agents could follow, not as a separate tool."
+response_plan:
+  path: 'docs\privacy-response-plan.md'
+  version: "synthetic-v2"
+  rules:
+    purview_in: "1.1"
+    purview_out: "1.2"
+    purview_review: "1.3"
+    extraction: "2.1"
+    fact_edit: "2.2"
+    severity_baseline: "3.1"
+    severity_indicator: "3.2"
+    severity_elevation: "3.3"
+    severity_containment: "3.4"
+    severity_closure: "3.5"
+    routing_escalation: "4.1"
+    routing_routine: "4.2"
+    routing_handoff: "4.3"
+    stakeholders: "5.1"
+    clock_triage: "6.1"
+    clock_update: "6.2"
+    clock_deletion: "6.3"
+    clock_followup: "6.4"
+    clock_notification: "6.5"
+    draft_deletion: "7.1"
+    draft_status: "7.2"
+    approval: "7.3"
+    draft_handoff: "8.1"
+    export: "8.2"
+clock_policy_label: "illustrative – configure to policy"
+demo:
+  pinned_incident_ids: [TG-DEMO-001, TG-DEMO-002, TG-DEMO-003]
+statuses: [New, Triaged, Contained, Awaiting Approval, Closed]
+workflow:
+  initial_status: New
+  closed_status: Closed
+  status_events:
+    Triaged: [triaged_at]
+    Contained: [triaged_at, contained_at]
+    Closed: [closed_at]
+
+facts:
+  data_types: "Data types involved"
+  customers: "Customers affected"
+  regions: "Regions affected"
+  record_count: "Approximate record count"
+  how_happened: "How it happened"
+  contained: "Containment confirmed"
+  deletion_attested: "Recipient confirmed deletion"
+  privacy_data_involved: "Customer or personal data involved"
+  security_process_only: "Security-process concern only"
+  environment: "Environment"
+
+extraction:
+  uncertain_clause_pattern: '\b(no|not|without|possibly|potentially|may|might|unknown|unconfirmed|suspected|whether)\b'
+  unknown_value_pattern: '^(unknown|not (?:yet )?(?:known|established|confirmed)|tbd|unspecified)$'
+  data_types:
+    contact details: ['\bcontact details\b', '\bemail addresses\b']
+    financial data: ['\bbank account numbers\b', '\bfinancial data\b']
+    health data: ['\bhealth records\b', '\bhealth data\b']
+    credentials: ['\bcredentials\b', '\bpasswords\b', '\baccess tokens\b']
+    test data: ['\bsynthetic test data\b']
+    public information: ['\balready-public information\b']
+    internal identifier: ['\bnon-personal internal identifier\b']
+  environment_pattern: 'Environment:\s*([^.;]+)[.;]'
+  privacy_data_involved:
+    "yes": ['Customer or personal data involved: yes[.;]']
+    "no": ['Customer or personal data involved: no[.;]']
+  security_process_only:
+    "yes": ['Security-process concern only: yes[.;]']
+    "no": ['Security-process concern only: no[.;]']
+  customers_pattern: 'Affected customer(?:s)?:\s*([^.;]+)[.;]'
+  regions_pattern: 'Affected region(?:s)?:\s*([^.;]+)[.;]'
+  record_count_pattern: '\bapproximately\s+([\d,]+)\s+records\b'
+  how_happened_pattern: 'Mechanism:\s*([^.;]+)[.;]'
+  contained:
+    "yes": ['Containment: confirmed[.;]']
+    "no": ['Containment: not confirmed[.;]', 'Containment: ongoing exposure[.;]']
+  deletion_attested:
+    "yes": ['Deletion attested: yes[.;]']
+    "no": ['Deletion attested: no[.;]']
+
+keywords:
+  attack: ['\bexternal attack\b', '\bcredential compromise\b']
+  insider: ['\bsuspected insider misuse\b']
+  not_incident: ['\bsynthetic test data only\b', '\balready-public information only\b', '\bfalse positive confirmed\b']
+  routine: ['\bmisdirected email\b', '\bmisdirected file\b']
+  restricted: ['\brestricted environment\b', '\bgovernment customer\b']
+  vendor: ['\bvendor-handled data\b', '\bpartner-handled data\b']
+  notification_review: ['\bnotification assessment requested\b']
+
+purview:
+  in_scope_label: "In scope"
+  out_of_scope_label: "Out of scope – route to another team"
+  review_label: "Needs review"
+  privacy_data_types: [contact details, financial data, health data, credentials]
+  exclusion_data_types: [internal identifier]
+  exclusion_record_count: 0
+  environments: [test, development, production]
+  receiving_teams:
+    test: "Demo Sandbox Engineering"
+    development: "Demo Developer Tools Engineering"
+  blocking_keywords: [attack, insider, restricted, vendor, notification_review]
+  in_scope_reason: "Explicit customer/personal data involvement is established for privacy triage."
+  out_of_scope_reason: "Confirmed engineering-only process concern in a non-production environment, non-personal internal identifiers only, no customer/personal data involvement, and zero affected customer records."
+  review_reason: "Privacy purview or the full engineering-only exclusion has not been established; confirm the missing facts."
+  conflict_reason: "Engineering-only exclusion evidence conflicts with privacy data or a protected escalation indicator; retain privacy review."
+
+severity:
+  levels: [P1, P2, P3]
+  default: P3
+  highest: P1
+  elevated: P2
+  sensitive_data_types: [financial data, health data, credentials]
+  large_record_count: 1000
+  indicator_rules:
+    - {keyword: attack, severity: P1, reason: "External attack or credential-compromise indicator."}
+    - {keyword: insider, severity: P1, reason: "Suspected insider-misuse indicator."}
+  containment_reduction: 1
+  containment_reason: "Containment and recipient deletion are both explicitly confirmed."
+  closure_label: "Close as not an incident"
+  closure_reason: "Explicit non-incident indicator; closure still requires PM review."
+
+routing:
+  fte_lane: "FTE-owned"
+  routine_lane: "Vendor-supported routine queue"
+  handoff_lane: "Engineering handoff"
+  core_fact_fields: [data_types, customers, regions, record_count, how_happened, contained, deletion_attested]
+  max_routine_unknowns: 1
+  max_routine_records: 100
+  high_severities: [P1, P2]
+  fte_keywords:
+    insider: "Suspected insider misuse needs FTE ownership."
+    attack: "Attack indicators need FTE ownership."
+    restricted: "Government or restricted-environment handling needs FTE ownership."
+    vendor: "Vendor/partner-handled data needs accountable FTE ownership."
+    notification_review: "Accountable owners must assess notification questions; this tool does not decide."
+  routine_reason: "Routine misdirection; contained with known non-sensitive data, low volume, and few unknowns."
+  fallback_reason: "Routine eligibility is not established; retain FTE ownership."
+
+stakeholders:
+  - name: Privacy
+    always: true
+    reason: "Own privacy fact confirmation and response coordination."
+  - name: Legal
+    keywords: [restricted, notification_review, insider]
+    sensitive: true
+    reason: "Accountable legal review may be needed; no legal conclusion is suggested."
+  - name: Security
+    keywords: [attack, insider]
+    reason: "Assess access, containment, and security evidence."
+  - name: Engineering owner
+    always: true
+    reason: "Validate the technical mechanism and containment evidence."
+  - name: Account/customer-facing team
+    customer_known: true
+    reason: "Coordinate approved, facts-only customer communications."
+
+clocks:
+  at_risk_fraction: 0.25
+  rules:
+    - id: initial_triage
+      plan_rule: clock_triage
+      label: Initial triage
+      start: reported_at
+      hours: 4
+      completed_by: triaged_at
+    - id: stakeholder_update
+      plan_rule: clock_update
+      label: First stakeholder update
+      start: reported_at
+      hours: 16
+      completed_by: stakeholder_update_recorded_at
+      manual_completion: true
+    - id: deletion_attestation
+      plan_rule: clock_deletion
+      label: Recipient deletion attestation
+      start: deletion_request_approved_at
+      business_days: 1
+      completed_by: deletion_attested_at
+    - id: follow_up
+      plan_rule: clock_followup
+      label: Follow-up
+      start: triaged_at
+      business_days: 3
+      completed_by: follow_up_recorded_at
+      manual_completion: true
+    - id: notification_assessment
+      plan_rule: clock_notification
+      label: Notification-assessment owner review
+      start: reported_at
+      hours: 24
+      when_keyword: notification_review
+      completed_by: notification_assessment_recorded_at
+      manual_completion: true
+
+dashboard:
+  aging_hours: [24, 72, 120]
+
+drafts:
+  approved_label: "Approved – ready to send manually"
+  status_blocked_patterns:
+    - '\b(may|might|likely|probably|suspect(?:ed)?|speculat\w*)\b'
+    - '\b(legally|unlawful|lawful|notifiable)\b'
+    - '\b(notification (?:is )?(?:not )?required|must notify|no notification|legal conclusion)\b'
+    - '\b(?:GDPR|CCPA|HIPAA)\b'
+  deletion:
+    plan_rule: draft_deletion
+    reason: "Request explicit recipient evidence and deletion attestation; manual delivery only."
+    title: Deletion/attestation request
+    template: |
+      SYNTHETIC PROTOTYPE — DRAFT ONLY — NEVER SENT
+      Incident: {incident_id}
+      To the unintended recipient (address to be verified manually):
+      We are reviewing a potentially misdirected message or file.
+      Please confirm whether you received it and whether it was accessed or shared.
+      Please delete the message/file and any copies, then provide a written
+      attestation of deletion and describe any onward disclosure.
+      Do not include the underlying customer data in your response.
+      A person must verify the recipient and approve any manual communication.
+  status:
+    plan_rule: draft_status
+    reason: "Separate confirmed facts, unknowns, recorded actions, and next steps; manual delivery only."
+    title: Facts-only status update
+    template: |
+      SYNTHETIC PROTOTYPE — DRAFT ONLY — NEVER SENT
+      Incident: {incident_id}
+      CONFIRMED FACTS
+      {confirmed}
+      UNKNOWNS / QUESTIONS
+      {unknowns}
+      ACTIONS RECORDED
+      {actions}
+      NEXT STEPS
+      Confirm outstanding facts with the reporter and accountable owners.
+      Next update time: {next_update}
+      This draft makes no legal or notification determination.
+  handoff:
+    plan_rule: draft_handoff
+    title: Engineering handoff / privacy closure note
+    reason: "Document verified exclusion evidence and a receiving team for PM-approved manual handoff, not automatic closure."
+    template: |
+      SYNTHETIC PROTOTYPE — DRAFT ONLY — NEVER SENT
+      Incident: {incident_id}
+      PRIVACY PURVIEW HANDOFF / CLOSURE NOTE — FOR PM REVIEW
+      CONFIRMED FACTS
+      {confirmed}
+      REMAINING UNKNOWNS
+      {unknowns}
+      WHY OUTSIDE THIS ILLUSTRATIVE PRIVACY PURVIEW
+      {purview_reasons}
+      RECEIVING TEAM / FURTHER ASKS
+      {receiving_team}
+      Direct further engineering/security-process asks to this synthetic team.
+      Ownership acceptance, engineering remediation, and manual delivery are not
+      confirmed by this prototype. Coordinate acceptance in the existing platform.
+      Re-enter privacy triage if new customer or personal data evidence appears.
+      Approval of this note does not transfer ownership or close either record.
+      Any privacy-record closure is a separate PM action in the case system.
+      This note makes no legal or notification determination.
