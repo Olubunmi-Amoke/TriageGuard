@@ -16,7 +16,7 @@ from engine.config import load_config
 from engine.drafts import fact_text
 from engine.export import export_summary
 from engine.models import Config, FactValue, Incident
-from engine.plan import plan_rationale
+from engine.plan import plan_rationale, response_plan_path
 from engine.queue import order_incidents
 from engine.state import (
     change_status,
@@ -143,7 +143,7 @@ def overview(config: Config) -> None:
     st.caption(f"Privacy response plan: {config['clock_policy_label']}.")
     with st.expander(f"Open privacy response plan · {config['response_plan']['path']}"):
         st.caption(f"Synthetic · {config['clock_policy_label']} · not Microsoft policy · {config['response_plan']['version']}")
-        st.markdown((ROOT / config["response_plan"]["path"]).read_text(encoding="utf-8"))
+        st.markdown((ROOT / response_plan_path(config)).read_text(encoding="utf-8"))
     with st.expander("Guardrails and boundaries"):
         st.markdown(
             "**Guardrails**\n"

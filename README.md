@@ -28,6 +28,9 @@ all clock displays, clock rationales, and exported summaries.
 Every rationale includes `Rule fired: Plan §X.Y`; the
 configuration maps rule names to numbered sections and validates those references
 on load.
+The response-plan path accepts Windows or POSIX separators and is resolved
+relative to the configuration/application directory, not the shell's working
+directory, so the same configuration works on Windows and Linux hosting.
 
 IcM and the approved case system remain the systems of record. Linked synthetic
 IDs and a copy-ready export demonstrate a manual handoff only. The per-incident
