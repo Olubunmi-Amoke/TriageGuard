@@ -5,7 +5,7 @@ import json
 import re
 from copy import deepcopy
 from datetime import datetime, timezone
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 
 import pytest
 
@@ -16,6 +16,7 @@ from engine.drafts import suggest_draft
 from engine.export import export_summary
 from engine.extract import suggest_extract
 from engine.purview import suggest_purview
+from engine.plan import response_plan_path
 from engine.queue import order_incidents
 from engine.state import (
     change_status,
@@ -354,6 +355,39 @@ def test_missing_plan_section_rejected(tmp_path, config):
     path.write_text(yaml.safe_dump(config), encoding="utf-8")
     with pytest.raises(ValueError, match="missing response-plan section"):
         load_config(path)
+
+
+@pytest.mark.parametrize("configured_path", [
+    r"docs\privacy-response-plan.md", "docs/privacy-response-plan.md",
+])
+def test_response_plan_path_works_with_linux_and_windows_roots(config, configured_path):
+    config["response_plan"]["path"] = configured_path
+    before = deepcopy(config)
+    path = response_plan_path(config)
+    assert PurePosixPath("/mount/src/triageguard") / path == PurePosixPath(
+        "/mount/src/triageguard/docs/privacy-response-plan.md"
+    )
+    assert PureWindowsPath(r"C:\demo\triageguard") / path == PureWindowsPath(
+        r"C:\demo\triageguard\docs\privacy-response-plan.md"
+    )
+    assert config == before
+
+
+@pytest.mark.parametrize("configured_path", [
+    r"docs\privacy-response-plan.md", "docs/privacy-response-plan.md",
+])
+def test_config_loads_plan_from_its_own_directory(tmp_path, config, configured_path):
+    import yaml
+
+    (tmp_path / "docs").mkdir()
+    (tmp_path / "docs" / "privacy-response-plan.md").write_text(
+        (ROOT / "docs" / "privacy-response-plan.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    config["response_plan"]["path"] = configured_path
+    path = tmp_path / "config.yaml"
+    path.write_text(yaml.safe_dump(config), encoding="utf-8")
+    assert load_config(path) == config
 
 
 def test_notification_assessment_clock_is_explicit_review_not_automatic_obligation(seeds, config):

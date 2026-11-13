@@ -7,6 +7,7 @@ import yaml
 
 from engine.clocks import parse_time
 from engine.models import Config
+from engine.plan import response_plan_path
 
 
 def load_config(path: Path) -> Config:
@@ -16,7 +17,7 @@ def load_config(path: Path) -> Config:
     if not isinstance(config, dict):
         raise ValueError("config.yaml must contain a mapping.")
     parse_time(config["demo_now"])
-    plan_path = path.parent / config["response_plan"]["path"]
+    plan_path = path.parent / response_plan_path(config)
     plan_text = plan_path.read_text(encoding="utf-8")
     sections = set(re.findall(r"^### (\d+\.\d+)\b", plan_text, re.MULTILINE))
     for rule, section in config["response_plan"]["rules"].items():
